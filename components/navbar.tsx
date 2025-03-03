@@ -100,7 +100,7 @@ const Navbar = () => {
             asChild={true}
             className="h-11 w-11 m500:h-9 m500:w-9 p-0 hover:!translate-x-[4px] hover:!translate-y-[4px] !bg-white dark:!bg-secondaryBlack"
           >
-            <Link href="https://x.com/hellokaton" target="_blank">
+            <Link href="https://x.com/BruceLeeone1" target="_blank">
               <svg
                 className="!h-6 !w-6 m500:h-4 m500:w-4"
                 xmlns="http://www.w3.org/2000/svg"
