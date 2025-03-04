@@ -1,14 +1,28 @@
-import React from 'react'
-import {cn} from "@/lib/utils";
+import React from "react";
+import { cn } from "@/lib/utils";
 
-const Container = ({children, id, className}:
-                   Readonly<{ children: React.ReactNode; id?: string; className?: string; }>
-) => {
-    return (
-        <div id={id} className={cn(
-            "w-full px-8 py-10 lg:px-4 max-w-3xl mx-auto",
-            className
-        )}>{children}</div>
-    )
+interface ContainerProps {
+  children: React.ReactNode;
+  id?: string;
+  className?: string;
 }
-export default Container
+
+const Container = ({
+  children,
+  id,
+  className,
+}: Readonly<ContainerProps>) => {
+  return (
+    <div
+      id={id}
+      className={cn(
+        "w-full px-8 py-10 lg:px-4 max-w-3xl mx-auto",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+};
+
+export default Container;

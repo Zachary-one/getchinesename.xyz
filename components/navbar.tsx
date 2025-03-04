@@ -8,24 +8,29 @@ import { ThemeSwitcher } from "@/components/global/theme-switcher";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
+type NavItem = {
+  name: string;
+  link: string;
+};
+
 const Logo = () => {
   return (
     <Link
       href="/"
       className="font-normal flex space-x-2 items-center text-sm mr-4  text-black px-2 py-1  relative z-20"
     >
-      <Image src="/logo.png" width={28} height={28} alt={"namesage"} />
-      <span className=" text-black text-2xl dark:text-amber-400 font-semibold font-mono">
+      <Image src="/logo.png" width={28} height={28} alt="namesage" priority />
+      <span className="text-black text-2xl dark:text-amber-400 font-semibold font-mono">
         NameSage
       </span>
     </Link>
   );
 };
 
-const DesktopNav = ({ navItems }: any) => {
+const DesktopNav = ({ navItems }: { navItems: NavItem[] }) => {
   return (
     <>
-      {navItems.map((navItem: any, idx: number) => (
+      {navItems.map((navItem, idx) => (
         <Link
           className="text-black dark:text-darkText font-semibold"
           key={`link=${idx}`}
@@ -38,20 +43,25 @@ const DesktopNav = ({ navItems }: any) => {
   );
 };
 
-const MobileNav = ({ navItems }: any) => {
+const MobileNav = ({ navItems }: { navItems: NavItem[] }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <IconMenu2 onClick={() => setOpen(!open)} />
+      <IconMenu2 
+        onClick={() => setOpen(!open)} 
+        className="text-black dark:text-amber-400"
+        aria-label="打开菜单"
+      />
       <AnimatePresence>
         {open && (
           <motion.div className="fixed inset-0 bg-[#fffaf0] dark:bg-neutral-900 z-50 flex flex-col justify-center items-center space-y-10 text-xl font-bold">
             <IconX
               className="absolute right-8 top-8 h-5 w-5 text-black dark:text-amber-400"
               onClick={() => setOpen(!open)}
+              aria-label="关闭菜单"
             />
-            {navItems.map((navItem: any, idx: number) => (
+            {navItems.map((navItem, idx) => (
               <Link
                 key={`link=${idx}`}
                 href={navItem.link}
@@ -68,7 +78,7 @@ const MobileNav = ({ navItems }: any) => {
 };
 
 const Navbar = () => {
-  const navItems = [
+  const navItems: NavItem[] = [
     {
       name: "Features",
       link: "#features",
@@ -86,6 +96,7 @@ const Navbar = () => {
       link: "#faq",
     },
   ];
+  
   return (
     <div className="flex flex-row items-center justify-between py-2 w-full mx-auto px-8 relative z-[60] bg-white dark:border-darkBorder dark:bg-secondaryBlack shadow-light">
       <div className="flex flex-row items-center justify-between w-full max-w-6xl mx-auto">
@@ -99,8 +110,9 @@ const Navbar = () => {
           <Button
             asChild={true}
             className="h-11 w-11 m500:h-9 m500:w-9 p-0 hover:!translate-x-[4px] hover:!translate-y-[4px] !bg-white dark:!bg-secondaryBlack"
+            aria-label="访问我们的 X 主页"
           >
-            <Link href="https://x.com/BruceLeeone1" target="_blank">
+            <Link href="https://x.com/BruceLeeone1" target="_blank" rel="noopener noreferrer">
               <svg
                 className="!h-6 !w-6 m500:h-4 m500:w-4"
                 xmlns="http://www.w3.org/2000/svg"
@@ -122,4 +134,5 @@ const Navbar = () => {
     </div>
   );
 };
+
 export default Navbar;
